@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		<h3>生命周期</h3>
+		<div id="app">
+			<p>{{msg}}</p>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: '生命周期'
+				},
+				// 实例创建完毕,el内的元素还没被替换，可以去发送请求
+				created() {
+					console.log('create');
+				},
+				// 挂载完毕,el内的元素被替换，可以操作页面元素
+				mounted() {
+					console.log('mounted');
+				}
+			})
+		</script>
+	</body>
+</html>

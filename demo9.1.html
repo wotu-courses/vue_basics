@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<h3>自定义组件</h3>
+		<div id="app">
+			<!--使用组件-->
+			<Hello></Hello>
+			<Second></Second>
+		</div>
+
+		<script type="text/javascript">
+			// 声明Hello组件
+			var Hello = {
+				template: '<p>{{userName}}</p>',
+				data() {
+					return {
+						userName: '我是老胡'
+					}
+				}
+			}
+			// 声明Second组件
+			var Second = {
+				template: '<p>{{msg}}</p>',
+				data() {
+					return {
+						msg: '这是第二个组件'
+					}
+				}
+			}
+
+			new Vue({
+				el: '#app',
+				data: {
+					msg: '2222'	
+				},
+				// 注册组件
+				components: {
+					Hello,
+					Second
+				}
+			})
+		</script>
+	</body>
+
+</html>

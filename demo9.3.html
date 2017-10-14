@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<h3>子组件向父组件传值： 点击子组件的按钮改变父组件的值</h3>
+		<div id="app">
+			<p>{{ total }}</p>
+			<!--传递一个函数给子组件-->
+			<Counter @add="count"></Counter>
+		</div>
+
+		<script type="text/javascript">
+			// 子组件
+			var Counter = {
+				template: '<button @click="myClick()">增加</button>',
+				data: function () {
+					return {
+						num: 0
+					}
+				},
+				methods: {
+					myClick: function () {
+						// 触发父组件的add函数
+						this.$emit('add',222)
+					}
+				},
+			}
+
+			// 父组件
+			new Vue({
+				el: '#app',
+				data: {
+					total: 0
+				},
+				components: {
+					Counter
+				},
+				methods: {
+					count: function (param) {
+						// 可以接收到子组件传回来的参数param
+						console.log(param);
+						this.total += 1
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

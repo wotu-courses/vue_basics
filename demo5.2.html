@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			li {
+				border: 1px solid;
+				margin-top: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3>列表渲染</h3>
+		<div id="app">
+			<ul style="padding: 0;list-style: none;">
+				<li v-for="(item, index) in items" :key="index">
+					<span>{{ index }}</span>
+					<span>名字-{{item.name}}</span>
+					<span> 产地-{{ item.addr }}</span>
+				</li>
+			</ul>
+			<button @click="update()">更新成员1的所有属性</button><br />
+			<button @click="update1()">更新成员1的某个属性</button><br />
+			<button @click="update2()">更新成员2</button><br />
+		</div>
+
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					items: [{
+							name: '苹果',
+							addr: '山东'
+						},
+						{
+							name: '香蕉',
+							addr: '海南'
+						}
+					]
+				},
+				methods: {
+					update() {
+						// 更新成员1的所有属性
+						this.$set(this.items, 0, {
+							name: '石榴',
+							addr: '山西'
+						});
+					},
+					update1() {
+						// 如果只希望只改变数组其中一个成员对象的其中一个属性的值，其他属性不改变，可以这样写
+						this.$set(this.items, 0, { ...this.items[0],
+							name: '番茄'
+						});
+					},
+					update2() {
+						// 第二种更新数组对象的方式
+						this.items.splice(0, 1, {
+							name: '雪梨',
+							addr: '广西'
+						});
+
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

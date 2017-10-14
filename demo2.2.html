@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div {margin: 5px;}
+			.active {border: 1px solid green;}
+			.error {color: red;}
+		</style>
+	</head>
+
+	<body>
+		<h3>样式绑定</h3>
+		<div id="app">
+			<div :class="classObj">对象</div>
+		</div>
+
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					classObj: {
+						active: true,
+						error: true
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

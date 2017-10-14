@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<h3>列表渲染</h3>
+		<div id="app">
+			<ul style="list-style: none;">
+				<li v-for="(item, index) in items" :key="index">
+					<span>{{ index }}</span>
+					<span>名字-{{item.name}}</span>
+					<span> 产地-{{ item.addr }}</span>
+				</li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			var example2 = new Vue({
+				el: '#app',
+				data: {
+					items: [{
+							name: '苹果',
+							addr: '山东'
+						},
+						{
+							name: '香蕉',
+							addr: '海南'
+						}
+					]
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<h3>props父组件给子组件传递参数</h3>
+		<div id="app">
+			<!-- parentMsg1 需要用连字符 -->
+			<Hello parent-msg1="hello" :parent-msg2="msg"></Hello>
+			<!--动态绑定参数-->
+			<input v-model="msg" />
+		</div>
+
+		<script type="text/javascript">
+			// 定义子组件First 要注意的是,template只能有一个根标签
+			var Hello = {
+				template: `<div><p>静态参数:{{ parentMsg1 }}</p>
+				<p>动态参数: {{parentMsg2}}</p></div>`,
+				props: ['parentMsg1','parentMsg2'],
+				data() {
+					return {}
+				}
+			}
+
+			new Vue({
+				el: '#app',
+				data: {
+					msg: '哈哈哈'
+				},
+				components: {
+					Hello
+				}
+			})
+		</script>
+	</body>
+
+</html>

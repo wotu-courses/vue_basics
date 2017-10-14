@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link href="https://cdn.bootcss.com/Swiper/4.0.0-beta.2/css/swiper.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+		<script src="https://cdn.bootcss.com/Swiper/4.0.0-beta.2/js/swiper.min.js"></script>
+	    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+		<!-- Demo styles -->
+		<style> html, body { position: relative; height: 100%; }  body { background: #fff; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14px; color: #000; margin: 0; padding: 0; }  .swiper-container { width: 300px; height: 300px; position: absolute; left: 50%; top: 50%; margin-left: -150px; margin-top: -150px; }  .swiper-slide { background-position: center; background-size: cover; } </style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div v-for="item in list" class="swiper-slide" :key="item.id"
+						:style=`backgroundImage:url(${item.url})`>
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					msg: 'aaa',
+					list: []
+				},
+				mounted() {
+					this.add();
+				},
+
+				methods: {
+					add() {
+						var url = 'http://www.easy-mock.com/mock/59b89b82e0dc663341a7cced/vue/imgList';
+						$.get(url, (res) => {
+							this.list = res.list;
+							// 等图片加载完毕才添加轮播图，不然不生效
+							this.$nextTick(()=> {
+								this.addCarousel();
+							})
+						})
+					},
+					// 添加轮播图
+					addCarousel() {
+						var swiper = new Swiper('.swiper-container', {
+							effect: 'cube',
+							loop: true
+						});
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

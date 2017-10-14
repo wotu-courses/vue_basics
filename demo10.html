@@ -1,0 +1,79 @@
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<style type="text/css">
+		.modal {
+				width: 200px;
+				height: 200px;
+				border: 1px solid;
+				text-align: right;
+				margin-top: 20px;
+			}
+		}
+		</style>
+	</head>
+
+	<body>
+		<h3>自定义组件的v-model</h3>
+		<hr />
+
+		<div id="app">
+			<button @click="show">显示modal</button>
+			<span>isShow:{{isShow}}</span>
+			<Modal v-model="isShow"></Modal>
+		</div>
+		<script>
+			var Modal = {
+				template: `<div class="modal" :value="value" v-show="visible">
+				<div class="close" @click="cancel"><span>value:{{value}}</span><button>X</button></div></div>`,
+
+				props: ['value'],
+
+				data() {
+					return {
+						visible: false
+					}
+				},
+				watch: {
+					value(val) {
+						console.log(val);
+						this.visible = val;
+					},
+					visible(val) {
+						this.$emit('input', val);
+					}
+				},
+				methods: {
+					cancel() {
+						this.visible = false;
+					}
+				},
+				mounted() {
+					if (this.value) {
+						this.visible = true;
+					}
+				}
+			}
+
+			new Vue({
+				el: '#app',
+				components: {
+					Modal
+				},
+				data: {
+					isShow: false
+				},
+				methods: {
+					show: function () {
+						this.isShow = true;
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>

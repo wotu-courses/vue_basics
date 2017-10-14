@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<p>消息：{{msg}}</p>
+			<p>对象属性值a：{{obj.a}}</p>
+			<button @click="updateMsg">修改消息的值</button><br />
+			<button @click="updateObj">修改属性a的值</button>
+		</div>
+
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: 'hello',
+					obj: {
+						a: 2,
+						b: 3
+					},
+					tip:''
+				},
+				methods: {
+					updateMsg() {
+						this.msg = 'haha';
+					},
+					updateObj() {
+						this.obj.a = '222';
+					}
+				}
+			})
+			// watch msg的值
+			vm.$watch('msg', function(newValue, oldValue) {
+				console.log('新值：'+newValue,'旧值：'+oldValue);
+			})
+			// watch对象的属性时需要添加一些参数
+			vm.$watch('obj', function (obj) {
+				console.log(obj.a);
+			}, {
+				// 没有这个参数不会触发回调
+				 deep: true,
+				// 有这个参数立即触发回调,不需要obj有改变
+				immediate: true
+			})
+		</script>
+	</body>
+
+</html>

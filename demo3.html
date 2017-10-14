@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<h3>事件修饰符</h3>
+		<div id="example-3" @click="clickFather()">
+			<button v-on:click="say('hi')">Say hi</button><br />
+			<button v-on:click="say('what')">Say what</button><br />
+			<button v-on:click.stop="doThis">stop(阻止事件冒泡)</button><br />
+		</div>
+
+		<script type="text/javascript">
+			new Vue({
+				el: '#example-3',
+				methods: {
+					say(message) {
+						alert(message)
+					},
+					doThis() {
+						alert('stop');
+					},
+					clickFather() {
+						console.log('你点击了父元素');
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

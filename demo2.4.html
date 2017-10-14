@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div {margin: 5px;}
+			.active {border: 1px solid green;}
+			.error {color: red;}
+		</style>
+	</head>
+
+	<body>
+		<h3>样式绑定</h3>
+		<div id="app">
+			<div :class="isActive ? 'active' : ''">使用表达式</div>
+			<div :class="[isActive ? 'active' : '', isError?'error':'']">同时使用两个表达式</div>
+		</div>
+
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					isActive: true,
+					isError: true
+				}
+			})
+		</script>
+	</body>
+
+</html>
